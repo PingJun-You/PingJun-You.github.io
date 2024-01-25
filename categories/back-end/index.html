@@ -7,7 +7,7 @@
 
     
 
-    <title>BingJun_Official_site</title>
+    <title>back-end | BingJun_Official_site</title>
     <meta name="author" content="BingJun" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
@@ -52,7 +52,7 @@
 
     <nav id="nav-inner" class="nav-inner">
         
-            <a class="nav-item active" href="/">
+            <a class="nav-item" href="/">
                 <span class="nav-text">首頁</span>
             </a>
         
@@ -60,7 +60,7 @@
                 <span class="nav-text">前端</span>
             </a>
         
-            <a class="nav-item" href="/categories/back-end">
+            <a class="nav-item active" href="/categories/back-end">
                 <span class="nav-text">後端</span>
             </a>
         
@@ -142,238 +142,29 @@
 
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
-                
-    <article class="article" itemscope itemprop="blogPost">
+                <article class="article" itemscope itemprop="blogPost">
     
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2023/08/25/%E7%80%8F%E8%A6%BD%E5%99%A8%E6%B8%B2%E6%9F%93%E6%A9%9F%E5%88%B6/">瀏覽器渲染機制</a>
+            back-end
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/index.html">
+            <a class="article-date" href="http://example.com/categories/back-end/index.html">
     
     <i class="icon-calendar vm"></i>
     
-    <time class="vm" datetime="2023-08-25T11:08:47.000Z" itemprop="datePublished">2023-08-25</time>
+    <time class="vm" datetime="2017-10-20T12:00:00.000Z" itemprop="datePublished">2017-10-20</time>
 </a>
 
             
-<div class="article-tag-list">
-    <i class="icon-tag vm"></i>
-    <a class="article-tag-link" href="/tags/%E7%B6%B2%E9%A0%81%E5%8E%9F%E7%90%86/" rel="tag">網頁原理</a>
-</div>
-
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        <h2>目錄</h2>
-<ul>
-  <li><a href="#introduction">緒論</a></li>
-  <li><a href="#basic-concepts">瀏覽器渲染的基本概念</a></li>
-  <li><a href="#rendering-process">渲染過程詳解</a>
-    <ul>
-      <li><a href="#process-flowchart">渲染流程圖</a></li>
-    </ul>
-  </li>
-  <li><a href="#importance">渲染的重要性</a></li>
-  <li><a href="#optimization">優化瀏覽器渲染</a></li>
-  <li><a href="#conclusion">結論</a></li>
-</ul>
-
-
-<br>
-<h2 id="introduction">緒論</h2>
-<p>瀏覽器渲染是網頁開發和網頁設計中的一個核心概念。了解瀏覽器如何將HTML、CSS和JavaScript轉化為我們所看到的網頁，對於創建快速且響應式的網站至關重要。</p>
-        
-        <p class="article-more-link">
-            <a href="/2023/08/25/%E7%80%8F%E8%A6%BD%E5%99%A8%E6%B8%B2%E6%9F%93%E6%A9%9F%E5%88%B6/#more">
-                <span class="vm">閱讀更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2023/06/28/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%20(DNS%20Lookup)/">什麼是域名解析 (DNS Lookup)</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/index.html">
-    
-    <i class="icon-calendar vm"></i>
-    
-    <time class="vm" datetime="2023-06-28T12:55:29.000Z" itemprop="datePublished">2023-06-28</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag vm"></i>
-    <a class="article-tag-link" href="/tags/%E7%B6%B2%E8%B7%AF%E7%B3%BB%E7%B5%B1/" rel="tag">網路系統</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2>目錄</h2>
-
-<br>
-<ul>
-    <li><a href="#introduction">緒論</a></li>
-    <li><a href="#dns-lookup-process">DNS Lookup 的運作流程</a></li>
-    <ul>
-        <li><a href="#basic-concepts">域名解析的基本概念</a></li>
-        <li><a href="#working-principle">DNS Lookup的工作原理</a></li>
-        <li><a href="#flowchart">流程圖解</a></li>
-        <li><a href="#dns-enter-url">輸入網址</a></li>
-        <li><a href="#dns-local-server-query">本地 DNS 伺服器查詢</a></li>
-        <li><a href="#dns-root-server-query">根域名伺服器查詢</a></li>
-        <li><a href="#dns-tld-server-query">頂級域名伺服器查詢</a></li>
-        <li><a href="#dns-authoritative-server-query">權威域名伺服器查詢</a></li>
-        <li><a href="#dns-return-ip">返回 IP 地址</a></li>
-    </ul>
-
-    <li><a href="#importance">DNS的重要性</a></li>
-    <li><a href="#case-study">實際案例分析</a></li>
-    <li><a href="#dns-query-types">DNS 查詢的類型</a></li>
-    <li><a href="#conclusion">結論</a></li>
-</ul>
-
-
-<br>
-<h2 id="introduction">緒論</h2>
-<p>
-    域名解析（DNS Lookup）是互聯網上不可或缺的一個基礎服務，它像是網際網路的「電話簿」。當我們在瀏覽器輸入一個網站地址，例如 <a href="http://www.example.com" target="_blank">www.example.com</a>，DNS解析的工作就是將這個人類可讀的地址轉換為機器可讀的IP地址，如
-    <code>192.0.2.1</code>，讓我們能順利訪問該網站。
-</p>
-        
-        <p class="article-more-link">
-            <a href="/2023/06/28/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%20(DNS%20Lookup)/#more">
-                <span class="vm">閱讀更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2023/06/26/%E4%BA%86%E8%A7%A3%20TCP%E8%88%87UDP%EF%BC%9A%E5%85%A9%E7%A8%AE%E7%B6%B2%E8%B7%AF%E5%8D%94%E5%AE%9A%E7%9A%84%E5%B7%AE%E7%95%B0/">了解 TCP與UDP：兩種網路協定的差異</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/index.html">
-    
-    <i class="icon-calendar vm"></i>
-    
-    <time class="vm" datetime="2023-06-26T12:47:17.000Z" itemprop="datePublished">2023-06-26</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag vm"></i>
-    <a class="article-tag-link" href="/tags/%E7%B6%B2%E8%B7%AF%E7%B3%BB%E7%B5%B1/" rel="tag">網路系統</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h2>目錄</h2>
-<ul>
-    <li><a href="#intro">引言</a></li>
-    <li><a href="#tcp">TCP：可靠性與順序性的保證</a>
-        <ul>
-            <li><a href="#why-tcp">為什麼TCP重要</a></li>
-            <li><a href="#how-tcp">TCP如何工作</a></li>
-            <li><a href="#what-tcp">TCP的應用場景</a></li>
-        </ul>
-    </li>
-    <li><a href="#udp">UDP：速度與效率的優先</a>
-        <ul>
-            <li><a href="#why-udp">為什麼UDP重要</a></li>
-            <li><a href="#how-udp">UDP如何工作</a></li>
-            <li><a href="#what-udp">UDP的應用場景</a></li>
-        </ul>
-    </li>
-    <li><a href="#comparison">TCP與UDP的比較圖表</a></li>
-    <li><a href="#conclusion">結論</a></li>
-</ul>
-
-<h2 id="intro">引言</h2>
-<p>在網路通訊的世界中，TCP（Transmission Control Protocol）和UDP（User Datagram Protocol）是兩種最基本且廣泛使用的協定。它們各自扮演著重要的角色，但在功能和特性上有著顯著的差異。本文旨在深入探討這兩種協定的差異，並解釋它們在不同應用中的適用性。</p>
-        
-        <p class="article-more-link">
-            <a href="/2023/06/26/%E4%BA%86%E8%A7%A3%20TCP%E8%88%87UDP%EF%BC%9A%E5%85%A9%E7%A8%AE%E7%B6%B2%E8%B7%AF%E5%8D%94%E5%AE%9A%E7%9A%84%E5%B7%AE%E7%95%B0/#more">
-                <span class="vm">閱讀更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2023/06/25/%E5%BE%9E%E8%BC%B8%E5%85%A5%E7%B6%B2%E5%9D%80%E5%88%97%E5%88%B0%E7%95%AB%E9%9D%A2%E5%87%BA%E7%8F%BE%EF%BC%8C%E7%B6%93%E6%AD%B7%E4%BA%86%E5%93%AA%E4%BA%9B%E9%81%8E%E7%A8%8B%EF%BC%9F/">從輸入網址列到畫面出現，經歷了哪些過程？</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/index.html">
-    
-    <i class="icon-calendar vm"></i>
-    
-    <time class="vm" datetime="2023-06-25T01:47:17.000Z" itemprop="datePublished">2023-06-25</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag vm"></i>
-    <a class="article-tag-link" href="/tags/%E7%B6%B2%E8%B7%AF%E7%B3%BB%E7%B5%B1/" rel="tag">網路系統</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        當我們在瀏覽器的地址欄輸入一個網址並按下回車後，背後會經歷一系列複雜的過程。本文將深入探討這一過程，包括網域名稱解析、發起HTTP請求、網頁數據傳輸，以及最終網頁的渲染。
-        
-        <p class="article-more-link">
-            <a href="/2023/06/25/%E5%BE%9E%E8%BC%B8%E5%85%A5%E7%B6%B2%E5%9D%80%E5%88%97%E5%88%B0%E7%95%AB%E9%9D%A2%E5%87%BA%E7%8F%BE%EF%BC%8C%E7%B6%93%E6%AD%B7%E4%BA%86%E5%93%AA%E4%BA%9B%E9%81%8E%E7%A8%8B%EF%BC%9F/#more">
-                <span class="vm">閱讀更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
         
         
     </section>
@@ -381,6 +172,24 @@
 
 
 
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "sanonz.github.io",
+        owner: "sanonz",
+        admin: ["sanonz"],
+        id: "71be9e7a73cf8a56acbabe78c44b176a",
+        distractionFreeMode: true,
+        title: "back-end",
+        body: "http://example.com/categories/back-end/index.html",
+        labels: []
+    }).render('comments');
+    </script>
+</div>
 
 
 

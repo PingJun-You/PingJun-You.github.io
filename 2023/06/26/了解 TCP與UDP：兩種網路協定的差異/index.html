@@ -7,10 +7,10 @@
 
     
 
-    <title>從輸入網址列到畫面出現，經歷了哪些過程？ | BingJun_Official_site</title>
+    <title>了解 TCP與UDP：兩種網路協定的差異 | BingJun_Official_site</title>
     <meta name="author" content="BingJun" />
     <meta name="keywords" content="" />
-    <meta name="description" content="當我們在瀏覽器的地址欄輸入一個網址並按下回車後，背後會經歷一系列複雜的過程。本文將深入探討這一過程，包括網域名稱解析、發起HTTP請求、網頁數據傳輸，以及最終網頁的渲染。目錄    網域名稱解析（DNS解析）    建立連接（TCP/IP）    發送HTTP請求    伺服器處理請求    瀏覽器渲染頁面    流程圖網域名稱解析(DNS解析)當你輸入一個網域名稱（例如：www.example.com），瀏覽器首先需要找到該網域名對應的IP地址。這一過程稱為DNS解析。    查詢本地DNS快" />
+    <meta name="description" content="目錄    引言    TCP：可靠性與順序性的保證                    為什麼TCP重要            TCP如何工作            TCP的應用場景                UDP：速度與效率的優先                    為什麼UDP重要            UDP如何工作            UDP的應用場景                TCP與UDP的比較圖表    結論引言在網路通訊的世界中，TCP（Transmission" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -94,7 +94,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">目錄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#domain_name_resolution"><span class="toc-number">2.</span> <span class="toc-text">網域名稱解析(DNS解析)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#establish_connect"><span class="toc-number">3.</span> <span class="toc-text">建立連接(TCP&#x2F;IP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#send_http_request"><span class="toc-number">4.</span> <span class="toc-text">發送HTTP請求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#server_procession_request"><span class="toc-number">5.</span> <span class="toc-text">伺服器處理請求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#browser_Render_Page"><span class="toc-number">6.</span> <span class="toc-text">瀏覽器渲染頁面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flowchar"><span class="toc-number">7.</span> <span class="toc-text">流程圖</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">目錄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#intro"><span class="toc-number">2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tcp"><span class="toc-number">3.</span> <span class="toc-text">TCP：可靠性與順序性的保證</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#why-tcp"><span class="toc-number">3.1.</span> <span class="toc-text">WHY - 為什麼TCP重要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#how-tcp"><span class="toc-number">3.2.</span> <span class="toc-text">HOW - TCP如何工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#what-tcp"><span class="toc-number">3.3.</span> <span class="toc-text">WHAT - TCP的應用場景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#udp"><span class="toc-number">4.</span> <span class="toc-text">UDP：速度與效率的優先</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#why-udp"><span class="toc-number">4.1.</span> <span class="toc-text">WHY - 為什麼UDP重要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#how-udp"><span class="toc-number">4.2.</span> <span class="toc-text">HOW - UDP如何工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#what-udp"><span class="toc-number">4.3.</span> <span class="toc-text">WHAT - UDP的應用場景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#comparison"><span class="toc-number">5.</span> <span class="toc-text">TCP與UDP的比較圖表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion"><span class="toc-number">6.</span> <span class="toc-text">結論</span></a></li></ol>
         
     </div>
 </aside>
@@ -108,15 +108,15 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            從輸入網址列到畫面出現，經歷了哪些過程？
+            了解 TCP與UDP：兩種網路協定的差異
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/2023/06/25/%E5%BE%9E%E8%BC%B8%E5%85%A5%E7%B6%B2%E5%9D%80%E5%88%97%E5%88%B0%E7%95%AB%E9%9D%A2%E5%87%BA%E7%8F%BE%EF%BC%8C%E7%B6%93%E6%AD%B7%E4%BA%86%E5%93%AA%E4%BA%9B%E9%81%8E%E7%A8%8B%EF%BC%9F/index.html">
+            <a class="article-date" href="http://example.com/2023/06/26/%E4%BA%86%E8%A7%A3%20TCP%E8%88%87UDP%EF%BC%9A%E5%85%A9%E7%A8%AE%E7%B6%B2%E8%B7%AF%E5%8D%94%E5%AE%9A%E7%9A%84%E5%B7%AE%E7%95%B0/index.html">
     
     <i class="icon-calendar vm"></i>
     
-    <time class="vm" datetime="2023-06-25T01:47:17.000Z" itemprop="datePublished">2023-06-25</time>
+    <time class="vm" datetime="2023-06-26T12:47:17.000Z" itemprop="datePublished">2023-06-26</time>
 </a>
 
             
@@ -133,70 +133,102 @@
         
         
 
-當我們在瀏覽器的地址欄輸入一個網址並按下回車後，背後會經歷一系列複雜的過程。本文將深入探討這一過程，包括網域名稱解析、發起HTTP請求、網頁數據傳輸，以及最終網頁的渲染。
+<h2>目錄</h2>
+<ul>
+    <li><a href="#intro">引言</a></li>
+    <li><a href="#tcp">TCP：可靠性與順序性的保證</a>
+        <ul>
+            <li><a href="#why-tcp">為什麼TCP重要</a></li>
+            <li><a href="#how-tcp">TCP如何工作</a></li>
+            <li><a href="#what-tcp">TCP的應用場景</a></li>
+        </ul>
+    </li>
+    <li><a href="#udp">UDP：速度與效率的優先</a>
+        <ul>
+            <li><a href="#why-udp">為什麼UDP重要</a></li>
+            <li><a href="#how-udp">UDP如何工作</a></li>
+            <li><a href="#what-udp">UDP的應用場景</a></li>
+        </ul>
+    </li>
+    <li><a href="#comparison">TCP與UDP的比較圖表</a></li>
+    <li><a href="#conclusion">結論</a></li>
+</ul>
+
+<h2 id="intro">引言</h2>
+<p>在網路通訊的世界中，TCP（Transmission Control Protocol）和UDP（User Datagram Protocol）是兩種最基本且廣泛使用的協定。它們各自扮演著重要的角色，但在功能和特性上有著顯著的差異。本文旨在深入探討這兩種協定的差異，並解釋它們在不同應用中的適用性。</p>
 <span id="more"></span>
-<h2><a href="#menu_id">目錄</a></h2>
-<ol id="menu_id">
-    <li><a href="#domain_name_resolution">網域名稱解析（DNS解析）</a></li>
-    <li><a href="#establish_connect">建立連接（TCP/IP）</a></li>
-    <li><a href="#send_http_request">發送HTTP請求</a></li>
-    <li><a href="#server_procession_request">伺服器處理請求</a></li>
-    <li><a href="#browser_Render_Page">瀏覽器渲染頁面</a></li>
-    <li><a href="#flowchar">流程圖</a></li>
-</ol>
-
-
-<h2 id="domain_name_resolution">網域名稱解析(DNS解析)</h2>
-<p>當你輸入一個網域名稱（例如：www.example.com），瀏覽器首先需要找到該網域名對應的IP地址。這一過程稱為DNS解析。</p>
-<ol>
-    <li>查詢本地DNS快取：瀏覽器會先檢查是否已經有該網域的IP地址在本地快取中。</li>
-    <li>請求DNS伺服器：如果沒有快取，瀏覽器會向配置的DNS伺服器發送請求，詢問網域的IP地址。</li>
-</ol>
-
-
-<h2 id="establish_connect">建立連接(TCP/IP)</h2>
-<p>一旦獲得IP地址，瀏覽器會通過TCP協議建立到該地址的連接。這通常涉及一個稱為三次握手的過程。</p>
-<ol>
-    <li>SYN：客戶端發送一個SYN（同步序列編號）包。</li>
-    <li>SYN-ACK：伺服器回應一個SYN-ACK（同步確認）包。</li>
-    <li>ACK：客戶端再發送一個ACK（確認）包。</li>
-</ol>
-
-
-<h2 id="send_http_request">發送HTTP請求</h2>
-<p>一旦TCP連接建立，瀏覽器就會通過這個連接發送一個HTTP請求。這個請求會包含訪問的網址、請求方式（如GET、POST）等信息。</p>
-
-
-<h2 id="server_procession_request">伺服器處理請求</h2>
-<p>網站伺服器收到請求後會進行處理，這可能包括查詢數據庫、執行後端代碼等操作，最終生成HTML、CSS和JavaScript等文件。</p>
-
-
-<h2 id="browser_Render_Page">瀏覽器渲染頁面</h2>
-<p>伺服器將生成的數據以HTTP響應的形式發回給瀏覽器。瀏覽器接收到數據後，會進行以下步驟：</p>
-<ol>
-    <li>解析HTML構建DOM樹：解析HTML檔案，創建頁面的內容結構。</li>
-    <li>解析CSS構建CSSOM樹：解析CSS檔案，創建頁面的樣式結構。</li>
-    <li>合併DOM和CSSOM產生渲染樹：結合DOM和CSSOM，創建實際的頁面渲染結構。</li>
-    <li>佈局（Layout）：計算出每個元素的位置和大小。</li>
-    <li>繪製（Paint）：將每個元素轉化為屏幕上的實際像素。</li>
-</ol>
-
-
-<h2 id="flowchar">流程圖</h2>
-<pre><code>
-A[輸入網址] -->|DNS解析| B(獲得IP地址)
-B --> C&#123;建立TCP連接&#125;
-C -->|三次握手| D[連接建立]
-D --> E[發送HTTP請求]
-E --> F[伺服器處理]
-F --> G[返回響應]
-G --> H[瀏覽器渲染]
-H --> I&#123;顯示網頁&#125;
-</code></pre>
 
 
 <br>
-<strong>本文提供了從輸入網址到網頁顯示的詳細過程，幫助理解網頁載入的整個流程。每一步都是整個網路溝通和資訊傳遞過程中不可或缺的一環。</strong>
+
+
+<h2 id="tcp">TCP：可靠性與順序性的保證</h2>
+<h3 id="why-tcp">WHY - 為什麼TCP重要</h3>
+<p>TCP提供了一種可靠的服務，確保數據包不僅被正確地傳輸到目的地，而且按順序到達。這種特性對於如網頁瀏覽、電子郵件和檔案傳輸等應用至關重要。</p>
+
+<h3 id="how-tcp">HOW - TCP如何工作</h3>
+<p>TCP通過使用握手協議、數據包確認、數據重傳和流量控制等技術，保證數據的完整性和順序性。這意味著，如果一個數據包丟失或錯誤，TCP會重新傳輸該數據包，直到它被正確接收。</p>
+
+<h3 id="what-tcp">WHAT - TCP的應用場景</h3>
+<p>TCP最適合那些需要高可靠性和數據完整性的應用，如檔案傳輸、郵件傳輸和網頁數據的傳輸。</p>
+
+
+<br>
+
+
+<h2 id="udp">UDP：速度與效率的優先</h2>
+<h3 id="why-udp">WHY - 為什麼UDP重要</h3>
+<p>與TCP不同，UDP是一種無連接協定，它不保證數據包的順序或完整性，但提供了更快的傳輸速度。這對於那些對即時性要求較高的應用來說非常重要。</p>
+
+<h3 id="how-udp">HOW - UDP如何工作</h3>
+<p>UDP對數據包進行最小的處理，不進行握手協議、不確認數據包，也不進行重傳。這種“射後不理”的方法使得UDP能夠快速傳輸數據，但也意味著它不能保證數據的可靠性和順序。</p>
+
+<h3 id="what-udp">WHAT - UDP的應用場景</h3>
+<p>UDP最適合那些可以容忍一定程度數據丟失，但對即時性要求較高的應用，如視頻串流、線上遊戲和VoIP（語音通訊）。</p>
+
+
+<br>
+
+
+<h2 id="comparison">TCP與UDP的比較圖表</h2>
+<table>
+    <tr>
+        <th>連接方式	</th>
+        <th>數據可靠性</th>
+        <th>數據順序性</th>
+        <th>速度	</th>
+        <th>應用場景</th>
+    </tr>
+    <tr>
+        <th>面向連接</th>
+        <th>高	</th>
+        <th>有序	</th>
+        <th>相對較慢	</th>
+        <th>網頁瀏覽、郵件傳輸	</th>
+    </tr>
+    <tr>
+        <th>無連接</th>
+        <th>低</th>
+        <th>無序</th>
+        <th>快</th>
+        <th>影音串流、線上遊戲</th>
+    </tr>
+</table>
+
+
+<br>
+
+
+<h2 id="conclusion">結論</h2>
+<p>總結來看，TCP和UDP各有所長，選擇哪一種協定取決於應用的特定需求。需要高度可靠性和順序性時，TCP是更佳選擇；而在需要快速傳輸且能容忍一定數據丟失的場景下，UDP則顯得更為合適。了解這兩種協定的差異，可以幫助我們更好地設計和選擇網路應用的底層通訊協定。</p>
+
+
+
+
+
+
+
+
 
 
 
@@ -228,8 +260,10 @@ H --> I&#123;顯示網頁&#125;
 
         
             
+            <a id="pagenext" href="/2023/06/25/%E5%BE%9E%E8%BC%B8%E5%85%A5%E7%B6%B2%E5%9D%80%E5%88%97%E5%88%B0%E7%95%AB%E9%9D%A2%E5%87%BA%E7%8F%BE%EF%BC%8C%E7%B6%93%E6%AD%B7%E4%BA%86%E5%93%AA%E4%BA%9B%E9%81%8E%E7%A8%8B%EF%BC%9F/" class="article-next" title="從輸入網址列到畫面出現，經歷了哪些過程？"><i class="icon-arrow-right"></i></a>
             
-            <a id="pageprev" href="/2023/06/26/%E4%BA%86%E8%A7%A3%20TCP%E8%88%87UDP%EF%BC%9A%E5%85%A9%E7%A8%AE%E7%B6%B2%E8%B7%AF%E5%8D%94%E5%AE%9A%E7%9A%84%E5%B7%AE%E7%95%B0/" class="article-prev" title="了解 TCP與UDP：兩種網路協定的差異"><i class="icon-arrow-left"></i></a>
+            
+            <a id="pageprev" href="/2023/06/28/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%20(DNS%20Lookup)/" class="article-prev" title="什麼是域名解析 (DNS Lookup)"><i class="icon-arrow-left"></i></a>
             
         
 
