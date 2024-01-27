@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>觀念_7大程式設計原則 | BingJun_Official_site</title>
+    <meta name="author" content="BingJun" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="程式設計的7大原則詳解在現代軟體開發中，遵循特定的設計原則可以大幅提升程式碼的品質、可維護性和擴展性。以下是對程式設計中7大原則的詳細解釋、應用情境以及具體的情境案例。目錄單一職責原則 (SRP)情境案例開放封閉原則 (OCP)情境案例里氏替換原則 (LSP)情境案例介面隔離原則 (ISP)情境案例依賴反轉原則 (DIP)情境案例合成&amp;#x2F;聚合復用原則 (CARP)情境案例最少知識原則 (LKP)情境案例單一職責原則 (SRP)原則說明：一個類別應該只有一個引起變化的原因。這意味著一個類別" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    <link rel="alternate" href="/atom.xml" title="BingJun_Official_site" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]><style type="text/css">.nav-inner {top:0;}.author-meta {position:static;top:0;}.search-form {height:36px;}</style><script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">BingJun_Official_site</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首頁</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">後端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">標籤</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">歸檔</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">訂閱</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">關於</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E7%9A%847%E5%A4%A7%E5%8E%9F%E5%89%87%E8%A9%B3%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">程式設計的7大原則詳解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E9%8C%84"><span class="toc-number">1.1.</span> <span class="toc-text">目錄</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%96%AE%E4%B8%80%E8%81%B7%E8%B2%AC%E5%8E%9F%E5%89%87-SRP"><span class="toc-number">1.1.1.</span> <span class="toc-text">單一職責原則 (SRP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-SRP"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">情境案例 (SRP)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%96%8B%E6%94%BE%E5%B0%81%E9%96%89%E5%8E%9F%E5%89%87-OCP"><span class="toc-number">1.1.2.</span> <span class="toc-text">開放封閉原則 (OCP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-OCP"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">情境案例 (OCP)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8F%9B%E5%8E%9F%E5%89%87-LSP"><span class="toc-number">1.1.3.</span> <span class="toc-text">里氏替換原則 (LSP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-LSP"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">情境案例 (LSP)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E9%9D%A2%E9%9A%94%E9%9B%A2%E5%8E%9F%E5%89%87-ISP"><span class="toc-number">1.1.4.</span> <span class="toc-text">介面隔離原則 (ISP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-ISP"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">情境案例 (ISP)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B3%B4%E5%8F%8D%E8%BD%89%E5%8E%9F%E5%89%87-DIP"><span class="toc-number">1.1.5.</span> <span class="toc-text">依賴反轉原則 (DIP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-DIP"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">情境案例 (DIP)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E6%88%90-%E8%81%9A%E5%90%88%E5%BE%A9%E7%94%A8%E5%8E%9F%E5%89%87-CARP"><span class="toc-number">1.1.6.</span> <span class="toc-text">合成&#x2F;聚合復用原則 (CARP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-CARP"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">情境案例 (CARP)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%91%E7%9F%A5%E8%AD%98%E5%8E%9F%E5%89%87-LKP"><span class="toc-number">1.1.7.</span> <span class="toc-text">最少知識原則 (LKP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-LKP"><span class="toc-number">1.1.7.1.</span> <span class="toc-text">情境案例 (LKP)</span></a></li></ol></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            觀念_7大程式設計原則
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/2024/01/27/%E8%A7%80%E5%BF%B5_7%E5%A4%A7%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2024-01-27T03:42:12.000Z" itemprop="datePublished">2024-01-27</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag vm"></i>
+    <a class="article-tag-link" href="/tags/%E7%A8%8B%E5%BC%8F%E6%92%B0%E5%AF%AB%E8%A7%80%E5%BF%B5/" rel="tag">程式撰寫觀念</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="程式設計的7大原則詳解"><a href="#程式設計的7大原則詳解" class="headerlink" title="程式設計的7大原則詳解"></a>程式設計的7大原則詳解</h1><p>在現代軟體開發中，遵循特定的設計原則可以大幅提升程式碼的品質、可維護性和擴展性。以下是對程式設計中7大原則的詳細解釋、應用情境以及具體的情境案例。</p>
+<span id="more"></span>
+
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ol>
+<li><a href="#%E5%96%AE%E4%B8%80%E8%81%B7%E8%B2%AC%E5%8E%9F%E5%89%87-srp">單一職責原則 (SRP)</a><ul>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-srp">情境案例</a></li>
+</ul>
+</li>
+<li><a href="#%E9%96%8B%E6%94%BE%E5%B0%81%E9%96%89%E5%8E%9F%E5%89%87-ocp">開放封閉原則 (OCP)</a><ul>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-ocp">情境案例</a></li>
+</ul>
+</li>
+<li><a href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8F%9B%E5%8E%9F%E5%89%87-lsp">里氏替換原則 (LSP)</a><ul>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-lsp">情境案例</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%8B%E9%9D%A2%E9%9A%94%E9%9B%A2%E5%8E%9F%E5%89%87-isp">介面隔離原則 (ISP)</a><ul>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-isp">情境案例</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BE%9D%E8%B3%B4%E5%8F%8D%E8%BD%89%E5%8E%9F%E5%89%87-dip">依賴反轉原則 (DIP)</a><ul>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-dip">情境案例</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%88%E6%88%90%E8%81%9A%E5%90%88%E5%BE%A9%E7%94%A8%E5%8E%9F%E5%89%87-carp">合成&#x2F;聚合復用原則 (CARP)</a><ul>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-carp">情境案例</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%B0%91%E7%9F%A5%E8%AD%98%E5%8E%9F%E5%89%87-lkp">最少知識原則 (LKP)</a><ul>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B-lkp">情境案例</a></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="單一職責原則-SRP"><a href="#單一職責原則-SRP" class="headerlink" title="單一職責原則 (SRP)"></a>單一職責原則 (SRP)</h3><p><strong>原則說明</strong>：一個類別應該只有一個引起變化的原因。這意味著一個類別應該僅負責一個功能或責任領域。</p>
+<p><strong>實踐方式</strong>：在設計類別時，應確保它只有一個任務或責任。如果一個類別承擔了多個職責，則應該考慮將其拆分成多個專注於單一職責的小類別。</p>
+<h4 id="情境案例-SRP"><a href="#情境案例-SRP" class="headerlink" title="情境案例 (SRP)"></a>情境案例 (SRP)</h4><p>在一個線上購物系統中，有一個類別名為 <code>OrderProcessor</code>。最初，這個類別不僅負責處理訂單，還負責發送通知給用戶。根據SRP，這個類別應該僅專注於訂單處理，因此將發送通知的功能拆分到另一個類別 <code>NotificationService</code>，從而使 <code>OrderProcessor</code> 符合單一職責原則。</p>
+<hr>
+<h3 id="開放封閉原則-OCP"><a href="#開放封閉原則-OCP" class="headerlink" title="開放封閉原則 (OCP)"></a>開放封閉原則 (OCP)</h3><p><strong>原則說明</strong>：軟體實體（如類別、模組、函數等）應該對擴展開放，對修改封閉。這意味著現有的程式碼結構應該容易擴展，而無需修改現有的程式碼。</p>
+<p><strong>實踐方式</strong>：通過使用抽象化和多型來實現軟體實體的彈性設計。這樣可以在不改變現有程式碼的情況下，通過添加新的類別或功能來擴展系統功能。</p>
+<h4 id="情境案例-OCP"><a href="#情境案例-OCP" class="headerlink" title="情境案例 (OCP)"></a>情境案例 (OCP)</h4><p>假設有一款遊戲軟體，原先只支援鍵盤作為輸入設備。為了支援更多輸入設備（如遊戲手把），而不修改現有程式碼，開發者引入了一個抽象的輸入接口 <code>InputDevice</code>。現有的鍵盤和新增的遊戲手把都實現這個接口，使得遊戲軟體能夠輕鬆擴展支援不同的輸入設備，而不需要修改原有程式碼。</p>
+<hr>
+<h3 id="里氏替換原則-LSP"><a href="#里氏替換原則-LSP" class="headerlink" title="里氏替換原則 (LSP)"></a>里氏替換原則 (LSP)</h3><p><strong>原則說明</strong>：子類別在不改變程式正確性的前提下，應該能夠替換其基類別。這條原則強調了繼承關係中的行為一致性。</p>
+<p><strong>實踐方式</strong>：在使用繼承時，確保子類別的行為符合基類別的預期。避免在子類中改變基類的行為，尤其是在公共方法中。</p>
+<h4 id="情境案例-LSP"><a href="#情境案例-LSP" class="headerlink" title="情境案例 (LSP)"></a>情境案例 (LSP)</h4><p>考慮一個基類 <code>Bird</code>，它有一個方法 <code>fly</code>。當我們有一個子類 <code>Penguin</code> 繼承自 <code>Bird</code> 時，根據LSP，<code>Penguin</code> 應該能夠替換 <code>Bird</code>。但是，企鵝不會飛，這在這裡就違反了LSP。為了解決這個問題，我們可以重新設計基類，比如創建一個更通用的類 <code>Animal</code>，並將 <code>fly</code> 方法移至一個新的子類 <code>FlyingBird</code>。</p>
+<hr>
+<h3 id="介面隔離原則-ISP"><a href="#介面隔離原則-ISP" class="headerlink" title="介面隔離原則 (ISP)"></a>介面隔離原則 (ISP)</h3><p><strong>原則說明</strong>：客戶端不應該被迫依賴於它不使用的接口。這個原則鼓勵將大型的接口拆分成更小且更具體的接口。</p>
+<p><strong>實踐方式</strong>：將大型接口拆分為更小、更具針對性的接口。這可以確保客戶端只需要依賴於那些它實際需要的方法。</p>
+<h4 id="情境案例-ISP"><a href="#情境案例-ISP" class="headerlink" title="情境案例 (ISP)"></a>情境案例 (ISP)</h4><p>假設有一個多功能打印機類別 <code>MultifunctionPrinter</code>，它實現了一個包含打印、掃描和複印功能的接口 <code>IMultifunctionDevice</code>。然而，某些客戶端可能只需要打印功能。根據ISP，應該將 <code>IMultifunctionDevice</code> 拆分為更小的接口，如 <code>IPrinter</code>、<code>IScanner</code> 和 <code>ICopier</code>，每個接口專注於一個功能，從而使客戶端只需依賴其實際所需的功能。</p>
+<hr>
+<h3 id="依賴反轉原則-DIP"><a href="#依賴反轉原則-DIP" class="headerlink" title="依賴反轉原則 (DIP)"></a>依賴反轉原則 (DIP)</h3><p><strong>原則說明</strong>：高層模組不應該依賴低層模組，兩者都應該依賴於抽象。換句話說，依賴應該是面向接口&#x2F;抽象，而不是 面向具體實現。</p>
+<p><strong>實踐方式</strong>：在模組間的交互中使用抽象類別或介面，減少它們對具體類別的直接依賴。這有助於降低模組間的耦合度，提高程式碼的靈活性和可維護性。</p>
+<h4 id="情境案例-DIP"><a href="#情境案例-DIP" class="headerlink" title="情境案例 (DIP)"></a>情境案例 (DIP)</h4><p>在一個應用程式中，有一個數據處理模組 <code>DataProcessor</code>，它直接依賴於一個特定的資料庫存儲實現 <code>MySQLDatabase</code>。為了遵循DIP，開發者引入了一個抽象的數據存儲接口 <code>IDataStore</code>，並讓 <code>MySQLDatabase</code> 實現這個接口。現在，<code>DataProcessor</code> 只依賴於 <code>IDataStore</code> 接口，這使得在未來更換數據存儲實現（例如切換到另一種資料庫）時，不需要修改 <code>DataProcessor</code> 的程式碼。</p>
+<hr>
+<h3 id="合成-聚合復用原則-CARP"><a href="#合成-聚合復用原則-CARP" class="headerlink" title="合成&#x2F;聚合復用原則 (CARP)"></a>合成&#x2F;聚合復用原則 (CARP)</h3><p><strong>原則說明</strong>：優先考慮使用對象的合成&#x2F;聚合來實現程式碼復用，而非繼承。這種方法更加靈活，降低了類之間的緊密耦合。</p>
+<p><strong>實踐方式</strong>：通過組合或聚合關係（即將一個對象包含為另一個對象的一部分）來重用現有的功能，而不是通過繼承。這有助於避免繼承帶來的複雜性和局限性。</p>
+<h4 id="情境案例-CARP"><a href="#情境案例-CARP" class="headerlink" title="情境案例 (CARP)"></a>情境案例 (CARP)</h4><p>假設有一個圖形編輯器應用程式，其中包含多種形狀，如圓形、矩形等。最初，這些形狀通過繼承自一個共同的基類 <code>Shape</code> 來實現共有功能（如移動、繪製等）。為了更好地重用程式碼並減少耦合，開發者決定使用合成&#x2F;聚合原則。他們創建了一個 <code>GraphicsEngine</code> 類，該類包含一個形狀的列表並處理所有的繪製邏輯，而各個形狀類則專注於定義它們自己的特性。</p>
+<hr>
+<h3 id="最少知識原則-LKP"><a href="#最少知識原則-LKP" class="headerlink" title="最少知識原則 (LKP)"></a>最少知識原則 (LKP)</h3><p><strong>原則說明</strong>：一個對象應該盡可能少地了解其他對象。也被稱為”不要和陌生人說話”的原則。這有助於降低系統中不同部分之間的依賴。</p>
+<p><strong>實踐方式</strong>：減少類之間的直接互動，改用設計模式（如中介者模式）來分散和管理類之間的通信。這有助於減少類之間的耦合和依賴。</p>
+<h4 id="情境案例-LKP"><a href="#情境案例-LKP" class="headerlink" title="情境案例 (LKP)"></a>情境案例 (LKP)</h4><p>在一個社交網絡應用程式中，有一個 <code>UserProfile</code> 類，<code>FriendsList</code>, <code>Messages</code>, <code>Notifications</code> 等）互動以獲取這些資訊。為了減少 <code>UserProfile</code> 對這些類的直接依賴，開發者引入了一個中介者類 <code>UserActivityMediator</code>。現在，<code>UserProfile</code> 只與 <code>UserActivityMediator</code> 互動，後者則負責與其他系統部分溝通。這樣，<code>UserProfile</code> 的知識範圍被限制在最小，降低了系統的耦合性。</p>
+<hr>
+<p>通過這些具體的情境案例，我們可以看到如何在實際軟體開發中應用這些原則。這些原則不僅幫助我們創建更具彈性、可擴展和可維護性的程式碼，還提供了一個清晰的框架來指導我們的設計決策。遵循這些原則能夠幫助開發者避免許多常見的設計陷阱，並在複雜的軟體開發項目中保持程式碼的清晰和有序。</p>
+<p>總的來說，這些設計原則不僅是理論上的概念，而是實際開發過程中的寶貴工具。它們應被視為指導思想，幫助我們在面對設計和架構挑戰時作出明智的決策。隨著技術的演進和項目需求的變化，這些原則也可能需要相應地調整和適應，但它們提供的基本框架將持續對軟體開發實踐產生深遠的影響。</p>
+
+        
+    </section>
+</article>
+
+
+
+
+            </div>
+        </div>
+
+        
+            
+            <a id="pagenext" href="/2023/08/25/%E7%80%8F%E8%A6%BD%E5%99%A8%E6%B8%B2%E6%9F%93%E6%A9%9F%E5%88%B6/" class="article-next" title="瀏覽器渲染機制"><i class="icon-arrow-right"></i></a>
+            
+            
+        
+
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://unpkg.com/jquery@1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle('normal', slideDone);
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp('normal', slideDone);
+            }, 3000);
+        }
+
+        function slideDone() {
+            if (nodes.navInner.css('display') !== 'none') {
+                nodes.navInner.css('display', '');
+            }
+        }
+
+        $(window).on('resize', function() {
+            if ($(this).width() > 960) {
+                nodes.navInner.css('display', '');
+            }
+        });
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
