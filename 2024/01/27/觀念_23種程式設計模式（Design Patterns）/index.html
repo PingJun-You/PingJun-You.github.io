@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>觀念_23種程式設計模式（Design Patterns） | BingJun_Official_site</title>
+    <meta name="author" content="BingJun" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="23種程式設計模式詳解程式設計模式（Design Patterns）指的是在軟體工程中，面對特定問題時經常使用的解決方案。這些模式反映了最佳實踐，可以在多種不同的情境下重複使用，有助於提高程式碼的可讀性、可重用性以及可維護性。文章內容包含了導論、詳細的23種設計模式介紹，以及情境案例和總結。有利於讀者對設計模式有系統的認識，並且通過具體的案例加深對每種模式的理解。目錄導論23種設計模式創建型模式（Creational Patterns）結構型模式行為型模式情境案例總結導論設計模式是程式設計中用於" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    <link rel="alternate" href="/atom.xml" title="BingJun_Official_site" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]><style type="text/css">.nav-inner {top:0;}.author-meta {position:static;top:0;}.search-form {height:36px;}</style><script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">BingJun_Official_site</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首頁</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">後端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">標籤</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">歸檔</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">訂閱</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">關於</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#23%E7%A8%AE%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%E8%A9%B3%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">23種程式設計模式詳解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E9%8C%84"><span class="toc-number">1.1.</span> <span class="toc-text">目錄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8E%E8%AB%96"><span class="toc-number">1.2.</span> <span class="toc-text">導論</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23%E7%A8%AE%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">23種設計模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%B5%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">創建型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B5%90%E6%A7%8B%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">結構型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E7%82%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.3.</span> <span class="toc-text">行為型模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B"><span class="toc-number">1.4.</span> <span class="toc-text">情境案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B8%BD%E7%B5%90"><span class="toc-number">1.5.</span> <span class="toc-text">總結</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            觀念_23種程式設計模式（Design Patterns）
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/2024/01/27/%E8%A7%80%E5%BF%B5_23%E7%A8%AE%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%EF%BC%88Design%20Patterns%EF%BC%89/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2024-01-27T07:36:04.000Z" itemprop="datePublished">2024-01-27</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag vm"></i>
+    <a class="article-tag-link" href="/tags/%E7%A8%8B%E5%BC%8F%E6%92%B0%E5%AF%AB%E8%A7%80%E5%BF%B5/" rel="tag">程式撰寫觀念</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="23種程式設計模式詳解"><a href="#23種程式設計模式詳解" class="headerlink" title="23種程式設計模式詳解"></a>23種程式設計模式詳解</h1><ul>
+<li>程式設計模式（Design Patterns）指的是在軟體工程中，面對特定問題時經常使用的解決方案。這些模式反映了最佳實踐，可以在多種不同的情境下重複使用，有助於提高程式碼的可讀性、可重用性以及可維護性。</li>
+<li>文章內容包含了導論、詳細的23種設計模式介紹，以及情境案例和總結。有利於讀者對設計模式有系統的認識，並且通過具體的案例加深對每種模式的理解。<span id="more"></span></li>
+</ul>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ol>
+<li><a href="#%E5%B0%8E%E8%AB%96">導論</a></li>
+<li><a href="#23%E7%A8%AE%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F">23種設計模式</a><ol>
+<li><a href="#%E5%89%B5%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F">創建型模式（Creational Patterns）</a></li>
+<li><a href="#%E7%B5%90%E6%A7%8B%E5%9E%8B%E6%A8%A1%E5%BC%8F">結構型模式</a></li>
+<li><a href="#%E8%A1%8C%E7%82%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F">行為型模式</a></li>
+</ol>
+</li>
+<li><a href="#%E6%83%85%E5%A2%83%E6%A1%88%E4%BE%8B">情境案例</a></li>
+<li><a href="#%E7%B8%BD%E7%B5%90">總結</a></li>
+</ol>
+<h2 id="導論"><a href="#導論" class="headerlink" title="導論"></a>導論</h2><p>設計模式是程式設計中用於解決特定問題的一種指導方針。它們是在多年軟體工程實踐中形成的最佳實踐方法。本文將詳細介紹23種常見的設計模式，並通過情境案例來展示它們的應用。</p>
+<h2 id="23種設計模式"><a href="#23種設計模式" class="headerlink" title="23種設計模式"></a>23種設計模式</h2><p>設計模式大致分為三大類：創建型模式（Creational Patterns）、結構型模式（Structural Patterns）和行為型模式（Behavioral Patterns）。每一種都有其獨特的用途和應用場景。</p>
+<ol>
+<li>創建型模式：這類模式與對象的創建有關，其目的是控制創建過程，使設計更加獨立於系統的創建和組成方式。例如：單例模式、建造者模式、工廠模式等。</li>
+<li>結構型模式：這類模式關注於對象和類的組合，通過繼承或組合來形成更大的結構。例如：適配器模式、裝飾者模式、代理模式等。</li>
+<li>行為型模式：這類模式關注於對象間的溝通和責任分配。例如：觀察者模式、策略模式、命令模式等。</li>
+</ol>
+<h3 id="創建型模式"><a href="#創建型模式" class="headerlink" title="創建型模式"></a>創建型模式</h3><p>創建型模式主要關注於物件創建的機制，使得系統在創建物件時更加靈活和重用性更高。</p>
+<ol>
+<li><p><strong>單例模式（Singleton）</strong></p>
+<ul>
+<li>描述：確保一個類只有一個實例，並提供一個全局訪問點。</li>
+<li>情境案例：在配置管理器中使用單例模式，確保整個應用中只有一個全局的配置設置。</li>
+</ul>
+</li>
+<li><p><strong>工廠方法模式（Factory Method）</strong></p>
+<ul>
+<li>描述：定義一個創建物件的接口，但讓子類決定實例化哪一個類。工廠方法讓類的實例化推遲到其子類。</li>
+<li>情境案例：在日誌系統中，根據日誌的類型（文件日誌、資料庫日誌等）來創建不同的日誌對象。</li>
+</ul>
+</li>
+</ol>
+<h3 id="結構型模式"><a href="#結構型模式" class="headerlink" title="結構型模式"></a>結構型模式</h3><p>結構型模式關注於如何組織不同的物件和類來形成更大的結構，同時保持這些結構的靈活和高效。</p>
+<ol>
+<li><strong>適配器模式（Adapter）</strong><ul>
+<li>描述：允許不兼容的接口之間的協作。它涉及到一個包裝器類，它包裝不兼容接口的物件。</li>
+<li>情境案例：在新系統中整合舊系統的數據，使用適配器模式來確保新系統能夠理解舊系統的數據格式。</li>
+</ul>
+</li>
+</ol>
+<h3 id="行為型模式"><a href="#行為型模式" class="headerlink" title="行為型模式"></a>行為型模式</h3><p>行為型模式專注於物件之間的責任分配。它們描述了物件或類之間如何通信，以及如何分配責任。</p>
+<ol>
+<li><p><strong>觀察者模式（Observer）</strong></p>
+<ul>
+<li>描述：定義了物件之間的一對多依賴關係，</li>
+<li>描述：定義了物件之間的一對多依賴關係，當一個物件改變狀態時，其所有依賴者都會收到通知並自動更新。</li>
+<li>情境案例：在社交媒體應用中，當用戶發布新動態時，所有關注該用戶的人都會收到通知。</li>
+</ul>
+</li>
+<li><p><strong>策略模式（Strategy）</strong></p>
+<ul>
+<li>描述：它定義了算法家族，分別封裝起來，讓它們之間可以互相替換。此模式讓算法的變化獨立於使用算法的客戶。</li>
+<li>情境案例：在一個電商平台中，根據不同的促銷策略（如打折、滿減、積分兌換）來計算最終的商品價格。</li>
+</ul>
+</li>
+<li><p><strong>命令模式（Command）</strong></p>
+<ul>
+<li>描述：將一個請求封裝成一個物件，從而讓你使用不同的請求、隊列或日誌來參數化其他對象。命令模式也支持可撤銷的操作。</li>
+<li>情境案例：在圖形用戶介面（GUI）應用中，將用戶動作（如按鈕點擊、選單選擇）封裝成命令物件，可以實現撤銷和重做功能。</li>
+</ul>
+</li>
+</ol>
+<h2 id="情境案例"><a href="#情境案例" class="headerlink" title="情境案例"></a>情境案例</h2><p>為了更好地理解這些設計模式，我們將透過具體的情境案例來展示它們的應用。這些案例涵蓋了從簡單的用戶界面設計到複雜的系統架構設計的各個方面，幫助讀者更深入地理解每種模式的實際應用。</p>
+<ol>
+<li><p><strong>電子商務系統中的工廠方法模式</strong></p>
+<ul>
+<li>在一個電子商務系統中，根據不同的支付方式（如信用卡、PayPal、銀行轉賬）來創建相應的支付處理對象。</li>
+</ul>
+</li>
+<li><p><strong>社交網絡服務中的觀察者模式</strong></p>
+<ul>
+<li>在社交網絡服務中，當一個用戶發布新的動態時，所有關注該用戶的人都會收到通知，這是觀察者模式的典型應用。</li>
+</ul>
+</li>
+<li><p><strong>文件編輯器中的命令模式</strong></p>
+<ul>
+<li>在一個文件編輯器中，每次用戶進行的編輯操作（如插入文字、刪除文字）都可以用命令模式來實現，以支持撤銷和重做操作。</li>
+</ul>
+</li>
+</ol>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>設計模式是解決特定問題的有效工具，它們提供了一種標準化的方法來設計和組織程式碼。通過本文的介紹和情境案例，我們可以更清晰地理解每種設計模式的應用場景和優勢。掌握這些模式不僅可以提高我們的編程技能，還可以幫助我們更好地設計和維護軟體 系統。總的來說，有效地運用設計模式能夠提高程式碼的重用性、可維護性及擴展性，並促進更有效的團隊協作和溝通。</p>
+<p>在當今多變的技術環境中，靈活運用這些模式對於應對複雜的開發挑戰至關重要。不論是面向對象程式設計、功能性程式設計，還是服務導向架構（SOA），設計模式都提供了一套豐富且有效的工具集，可以幫助開發者和架構師構建更健壯、更靈活的軟體系統。</p>
+<p>理解和掌握這些模式對於任何軟體開發者來說都是一項寶貴的資產，它們不僅提高了個人技能，也為整個軟體開發行業的進步做出了貢獻。因此，無論是初學者還是經驗豐富的專業人士，都應該不斷學習和實踐這些模式，以便在日益複雜的軟體開發領域中保持競爭力。</p>
+<hr>
+<p>以上便是關於程式設計中的23種設計模式的詳細介紹和分析，包括了各個模式的定義、特點以及實際應用情境案例。希望通過本文，讀者能對設計模式有更深入的理解，並能在實際開發工作中靈活運用這些知識。</p>
+
+        
+    </section>
+</article>
+
+
+
+
+            </div>
+        </div>
+
+        
+            
+            <a id="pagenext" href="/2024/01/27/%E8%A7%80%E5%BF%B5_7%E5%A4%A7%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87/" class="article-next" title="觀念_7大程式設計原則"><i class="icon-arrow-right"></i></a>
+            
+            
+            <a id="pageprev" href="/2024/01/27/%E8%A7%80%E5%BF%B5_%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E8%88%87%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%88%E5%BE%8C%E9%97%9C%E4%BF%82%E8%88%87%E7%9B%B8%E5%B0%8D%E9%97%9C%E4%BF%82/" class="article-prev" title="程式設計原則與模式的先後關係與相對關係"><i class="icon-arrow-left"></i></a>
+            
+        
+
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://unpkg.com/jquery@1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle('normal', slideDone);
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp('normal', slideDone);
+            }, 3000);
+        }
+
+        function slideDone() {
+            if (nodes.navInner.css('display') !== 'none') {
+                nodes.navInner.css('display', '');
+            }
+        }
+
+        $(window).on('resize', function() {
+            if ($(this).width() > 960) {
+                nodes.navInner.css('display', '');
+            }
+        });
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
