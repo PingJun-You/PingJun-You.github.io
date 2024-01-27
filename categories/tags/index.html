@@ -400,37 +400,7 @@
     
     <section class="article-body markdown-body">
         
-        <h2>目錄</h2>
-
-<br>
-<ul>
-    <li><a href="#introduction">緒論</a></li>
-    <li><a href="#dns-lookup-process">DNS Lookup 的運作流程</a></li>
-    <ul>
-        <li><a href="#basic-concepts">域名解析的基本概念</a></li>
-        <li><a href="#working-principle">DNS Lookup的工作原理</a></li>
-        <li><a href="#flowchart">流程圖解</a></li>
-        <li><a href="#dns-enter-url">輸入網址</a></li>
-        <li><a href="#dns-local-server-query">本地 DNS 伺服器查詢</a></li>
-        <li><a href="#dns-root-server-query">根域名伺服器查詢</a></li>
-        <li><a href="#dns-tld-server-query">頂級域名伺服器查詢</a></li>
-        <li><a href="#dns-authoritative-server-query">權威域名伺服器查詢</a></li>
-        <li><a href="#dns-return-ip">返回 IP 地址</a></li>
-    </ul>
-
-    <li><a href="#importance">DNS的重要性</a></li>
-    <li><a href="#case-study">實際案例分析</a></li>
-    <li><a href="#dns-query-types">DNS 查詢的類型</a></li>
-    <li><a href="#conclusion">結論</a></li>
-</ul>
-
-
-<br>
-<h2 id="introduction">緒論</h2>
-<p>
-    域名解析（DNS Lookup）是互聯網上不可或缺的一個基礎服務，它像是網際網路的「電話簿」。當我們在瀏覽器輸入一個網站地址，例如 <a href="http://www.example.com" target="_blank">www.example.com</a>，DNS解析的工作就是將這個人類可讀的地址轉換為機器可讀的IP地址，如
-    <code>192.0.2.1</code>，讓我們能順利訪問該網站。
-</p>
+        域名解析（DNS Lookup）是將網址轉換為IP地址的過程，讓電腦能找到正確的伺服器。
         
         <p class="article-more-link">
             <a href="/2023/06/28/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%20(DNS%20Lookup)/#more">
@@ -472,29 +442,7 @@
     
     <section class="article-body markdown-body">
         
-        <h2>目錄</h2>
-<ul>
-    <li><a href="#intro">引言</a></li>
-    <li><a href="#tcp">TCP：可靠性與順序性的保證</a>
-        <ul>
-            <li><a href="#why-tcp">為什麼TCP重要</a></li>
-            <li><a href="#how-tcp">TCP如何工作</a></li>
-            <li><a href="#what-tcp">TCP的應用場景</a></li>
-        </ul>
-    </li>
-    <li><a href="#udp">UDP：速度與效率的優先</a>
-        <ul>
-            <li><a href="#why-udp">為什麼UDP重要</a></li>
-            <li><a href="#how-udp">UDP如何工作</a></li>
-            <li><a href="#what-udp">UDP的應用場景</a></li>
-        </ul>
-    </li>
-    <li><a href="#comparison">TCP與UDP的比較圖表</a></li>
-    <li><a href="#conclusion">結論</a></li>
-</ul>
-
-<h2 id="intro">引言</h2>
-<p>在網路通訊的世界中，TCP（Transmission Control Protocol）和UDP（User Datagram Protocol）是兩種最基本且廣泛使用的協定。它們各自扮演著重要的角色，但在功能和特性上有著顯著的差異。本文旨在深入探討這兩種協定的差異，並解釋它們在不同應用中的適用性。</p>
+        TCP和UDP是網路通訊的兩種協定；TCP注重數據完整性，保證通訊無誤，而UDP傳輸快速但不保證每個數據包的準確到達。
         
         <p class="article-more-link">
             <a href="/2023/06/26/%E4%BA%86%E8%A7%A3%20TCP%E8%88%87UDP%EF%BC%9A%E5%85%A9%E7%A8%AE%E7%B6%B2%E8%B7%AF%E5%8D%94%E5%AE%9A%E7%9A%84%E5%B7%AE%E7%95%B0/#more">
