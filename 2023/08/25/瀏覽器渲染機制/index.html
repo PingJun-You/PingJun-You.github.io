@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>瀏覽器渲染機制 | BingJun_Official_site</title>
+    <meta name="author" content="BingJun" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="目錄  緒論  瀏覽器渲染的基本概念  渲染過程詳解          渲染流程圖        渲染的重要性  優化瀏覽器渲染  結論緒論瀏覽器渲染是網頁開發和網頁設計中的一個核心概念。了解瀏覽器如何將HTML、CSS和JavaScript轉化為我們所看到的網頁，對於創建快速且響應式的網站至關重要。瀏覽器渲染的基本概念瀏覽器渲染是一個將代碼和資源轉換成實際可見網頁的過程。它涉及解析HTML標記、應用CSS樣式、執行JavaScript代碼、計算佈局、繪制像素等多個步驟。渲染過程詳解瀏覽器渲染的" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    <link rel="alternate" href="/atom.xml" title="BingJun_Official_site" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]><style type="text/css">.nav-inner {top:0;}.author-meta {position:static;top:0;}.search-form {height:36px;}</style><script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">BingJun_Official_site</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首頁</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">後端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">標籤</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">歸檔</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">訂閱</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">關於</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">目錄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">緒論</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#basic-concepts"><span class="toc-number">3.</span> <span class="toc-text">瀏覽器渲染的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rendering-process"><span class="toc-number">4.</span> <span class="toc-text">渲染過程詳解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#process-flowchart"><span class="toc-number">4.1.</span> <span class="toc-text">渲染流程圖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#importance"><span class="toc-number">5.</span> <span class="toc-text">渲染的重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimization"><span class="toc-number">6.</span> <span class="toc-text">優化瀏覽器渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion"><span class="toc-number">7.</span> <span class="toc-text">結論</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            瀏覽器渲染機制
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/2023/08/25/%E7%80%8F%E8%A6%BD%E5%99%A8%E6%B8%B2%E6%9F%93%E6%A9%9F%E5%88%B6/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-08-25T11:08:47.000Z" itemprop="datePublished">2023-08-25</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag vm"></i>
+    <a class="article-tag-link" href="/tags/%E7%B6%B2%E9%A0%81%E5%8E%9F%E7%90%86/" rel="tag">網頁原理</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        
+
+<h2>目錄</h2>
+<ul>
+  <li><a href="#introduction">緒論</a></li>
+  <li><a href="#basic-concepts">瀏覽器渲染的基本概念</a></li>
+  <li><a href="#rendering-process">渲染過程詳解</a>
+    <ul>
+      <li><a href="#process-flowchart">渲染流程圖</a></li>
+    </ul>
+  </li>
+  <li><a href="#importance">渲染的重要性</a></li>
+  <li><a href="#optimization">優化瀏覽器渲染</a></li>
+  <li><a href="#conclusion">結論</a></li>
+</ul>
+
+
+<br>
+<h2 id="introduction">緒論</h2>
+<p>瀏覽器渲染是網頁開發和網頁設計中的一個核心概念。了解瀏覽器如何將HTML、CSS和JavaScript轉化為我們所看到的網頁，對於創建快速且響應式的網站至關重要。</p>
+<span id="more"></span>
+
+<br>
+<h2 id="basic-concepts">瀏覽器渲染的基本概念</h2>
+<p>瀏覽器渲染是一個將代碼和資源轉換成實際可見網頁的過程。它涉及解析HTML標記、應用CSS樣式、執行JavaScript代碼、計算佈局、繪制像素等多個步驟。</p>
+
+
+<br>
+<h2 id="rendering-process">渲染過程詳解</h2>
+<p>瀏覽器渲染的整個過程可以分為以下幾個主要階段：</p>
+<h3 id="process-flowchart">渲染流程圖</h3>
+<p>以下是瀏覽器渲染的流程圖：</p>
+<pre>
+[HTML, CSS, JavaScript載入] -> [解析HTML形成DOM樹]
+     ↓                               ↓
+[解析CSS形成CSSOM樹] -> [合併DOM和CSSOM形成渲染樹]
+     ↓                               ↓
+[執行JavaScript] -> [計算佈局] -> [繪制像素]
+</pre>
+
+
+<br>
+<h2 id="importance">渲染的重要性</h2>
+<p>瀏覽器渲染的效率直接影響到頁面加載時間和用戶體驗。一個有效率的渲染過程可以提供更流暢的用戶體驗，減少資源消耗，並改善網站的整體性能。</p>
+
+
+<br>
+<h2 id="optimization">優化瀏覽器渲染</h2>
+<p>為了優化瀏覽器的渲染過程，開發者需要考慮多方面的因素，如優化資源加載、減少重排和重繪、利用瀏覽器緩存和執行有效的JavaScript代碼等。</p>
+
+
+<br>
+<h2 id="conclusion">結論</h2>
+<p>總結來說，瀏覽器渲染是一個複雜但關鍵的過程，對於提供優質的網頁體驗至關重要。了解和優化這一過程不僅能提升網站的性能，還能增強用戶滿意度和互動性。</p>
+
+
+
+
+
+
+        
+    </section>
+</article>
+
+
+
+
+            </div>
+        </div>
+
+        
+            
+            <a id="pagenext" href="/2023/06/28/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%20(DNS%20Lookup)/" class="article-next" title="什麼是域名解析 (DNS Lookup)"><i class="icon-arrow-right"></i></a>
+            
+            
+        
+
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://unpkg.com/jquery@1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle('normal', slideDone);
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp('normal', slideDone);
+            }, 3000);
+        }
+
+        function slideDone() {
+            if (nodes.navInner.css('display') !== 'none') {
+                nodes.navInner.css('display', '');
+            }
+        }
+
+        $(window).on('resize', function() {
+            if ($(this).width() > 960) {
+                nodes.navInner.css('display', '');
+            }
+        });
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

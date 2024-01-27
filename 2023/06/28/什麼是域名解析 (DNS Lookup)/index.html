@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>什麼是域名解析 (DNS Lookup) | BingJun_Official_site</title>
+    <meta name="author" content="BingJun" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="域名解析（DNS Lookup）是將網址轉換為IP地址的過程，讓電腦能找到正確的伺服器。目錄    緒論    DNS Lookup 的運作流程            域名解析的基本概念        DNS Lookup的工作原理        流程圖解        輸入網址        本地 DNS 伺服器查詢        根域名伺服器查詢        頂級域名伺服器查詢        權威域名伺服器查詢        返回 IP 地址        DNS的重要性    實際案例分" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    <link rel="alternate" href="/atom.xml" title="BingJun_Official_site" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]><style type="text/css">.nav-inner {top:0;}.author-meta {position:static;top:0;}.search-form {height:36px;}</style><script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">BingJun_Official_site</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首頁</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">後端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">標籤</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">歸檔</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">訂閱</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">關於</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">目錄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">緒論</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dns-lookup-process"><span class="toc-number">3.</span> <span class="toc-text">DNS Lookup 的運作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#basic-concepts"><span class="toc-number">3.1.</span> <span class="toc-text">域名解析的基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#working-principle"><span class="toc-number">3.2.</span> <span class="toc-text">DNS Lookup的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flowchart"><span class="toc-number">3.3.</span> <span class="toc-text">流程圖解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns-enter-url"><span class="toc-number">3.4.</span> <span class="toc-text">輸入網址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns-local-server-query"><span class="toc-number">3.5.</span> <span class="toc-text">本地 DNS 伺服器查詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns-root-server-query"><span class="toc-number">3.6.</span> <span class="toc-text">根域名伺服器查詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns-tld-server-query"><span class="toc-number">3.7.</span> <span class="toc-text">頂級域名伺服器查詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns-authoritative-server-query"><span class="toc-number">3.8.</span> <span class="toc-text">權威域名伺服器查詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns-return-ip"><span class="toc-number">3.9.</span> <span class="toc-text">返回 IP 地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#importance"><span class="toc-number">4.</span> <span class="toc-text">DNS的重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#case-study"><span class="toc-number">5.</span> <span class="toc-text">實際案例分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dns-query-types"><span class="toc-number">6.</span> <span class="toc-text">DNS 查詢的類型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion"><span class="toc-number">7.</span> <span class="toc-text">結論</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            什麼是域名解析 (DNS Lookup)
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/2023/06/28/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%20(DNS%20Lookup)/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-06-28T12:55:29.000Z" itemprop="datePublished">2023-06-28</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag vm"></i>
+    <a class="article-tag-link" href="/tags/%E7%B6%B2%E8%B7%AF%E7%B3%BB%E7%B5%B1/" rel="tag">網路系統</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        域名解析（DNS Lookup）是將網址轉換為IP地址的過程，讓電腦能找到正確的伺服器。
+<span id="more"></span>
+
+<h2>目錄</h2>
+
+<br>
+<ul>
+    <li><a href="#introduction">緒論</a></li>
+    <li><a href="#dns-lookup-process">DNS Lookup 的運作流程</a></li>
+    <ul>
+        <li><a href="#basic-concepts">域名解析的基本概念</a></li>
+        <li><a href="#working-principle">DNS Lookup的工作原理</a></li>
+        <li><a href="#flowchart">流程圖解</a></li>
+        <li><a href="#dns-enter-url">輸入網址</a></li>
+        <li><a href="#dns-local-server-query">本地 DNS 伺服器查詢</a></li>
+        <li><a href="#dns-root-server-query">根域名伺服器查詢</a></li>
+        <li><a href="#dns-tld-server-query">頂級域名伺服器查詢</a></li>
+        <li><a href="#dns-authoritative-server-query">權威域名伺服器查詢</a></li>
+        <li><a href="#dns-return-ip">返回 IP 地址</a></li>
+    </ul>
+
+    <li><a href="#importance">DNS的重要性</a></li>
+    <li><a href="#case-study">實際案例分析</a></li>
+    <li><a href="#dns-query-types">DNS 查詢的類型</a></li>
+    <li><a href="#conclusion">結論</a></li>
+</ul>
+
+
+<br>
+<h2 id="introduction">緒論</h2>
+<p>
+    域名解析（DNS Lookup）是互聯網上不可或缺的一個基礎服務，它像是網際網路的「電話簿」。當我們在瀏覽器輸入一個網站地址，例如 <a href="http://www.example.com" target="_blank">www.example.com</a>，DNS解析的工作就是將這個人類可讀的地址轉換為機器可讀的IP地址，如
+    <code>192.0.2.1</code>，讓我們能順利訪問該網站。
+</p>
+
+<br>
+<h2 id="dns-lookup-process">DNS Lookup 的運作流程</h2>
+<h3 id="basic-concepts">域名解析的基本概念</h3>
+<p>
+    <strong>域名解析</strong> 指的是將域名轉換為IP地址的過程。每個使用互聯網的設備都有一個唯一的IP地址，這就像是每棟房子都有一個獨特的地址。DNS系統就是用來將容易記憶的域名（如 <code>google.com</code>）轉換成數字形式的IP地址。
+</p>
+<h3 id="working-principle">DNS Lookup的工作原理</h3>
+<p>DNS解析的過程包含了多個步驟，從請求者的電腦開始，經由一系列的DNS服務器，最終找到對應的IP地址。</p>
+
+<h3 id="flowchart">流程圖解</h3>
+<p>DNS解析的過程包含了多個步驟，從請求者的電腦開始，經由一系列的DNS服務器，最終找到對應的IP地址。</p>
+<p>以下是DNS查詢的基本流程圖：</p>
+<pre>
+[用戶端] -> [本地DNS伺服器] -> [根域名服務器]
+     ↓             ↓                   ↓
+[擁有該域名的授權DNS伺服器] -> [IP地址返回用戶端]
+</pre>
+
+
+<h3 id="dns-enter-url">輸入網址</h3>
+<p>用戶在瀏覽器中輸入一個網域名稱（如 www.example.com）。</p>
+
+<h3 id="dns-local-server-query">本地 DNS 伺服器查詢</h3>
+<p>首先，用戶的設備會向配置的本地 DNS 伺服器發送查詢請求，詢問該網域名稱對應的 IP 地址。</p>
+
+<h3 id="dns-root-server-query">根域名伺服器查詢</h3>
+<p>如果本地 DNS 伺服器沒有該網域的記錄，它會向根域名伺服器（Root DNS Servers）發送查詢請求。</p>
+
+<h3 id="dns-tld-server-query">頂級域名伺服器查詢</h3>
+<p>根域名伺服器會將查詢指向相應的頂級域名（Top-Level Domain, TLD）伺服器，例如 .com、.net 等。</p>
+
+<h3 id="dns-authoritative-server-query">權威域名伺服器查詢</h3>
+<p>接著，TLD 伺服器會導向到該網域名稱的權威域名伺服器（Authoritative Name Servers），這些伺服器存儲了該網域的具體 IP 地址記錄。</p>
+
+<h3 id="dns-return-ip">返回 IP 地址</h3>
+<p>最後，權威域名伺服器回應 IP 地址給本地 DNS 伺服器，然後本地 DNS 伺服器再將該 IP 地址返回給用戶的設備，從而完成解析過程。</p>
+
+
+<br>
+<h2 id="importance">DNS的重要性</h2>
+<p>
+  DNS的重要性體現在它是連接用戶和互聯網服務的關鍵橋樑。沒有DNS，我們將不得不記住每個我們想要訪問網站的IP地址，這無疑是一項艱巨的任務。
+</p>
+
+<br>
+<h2 id="case-study">實際案例分析</h2>
+<p>
+  考慮一個實際的例子：當你輸入 <code>www.facebook.com</code> 在瀏覽器中時，DNS服務器會將這個域名解析為Facebook伺服器的IP地址，從而讓你的瀏覽器能夠加載Facebook的首頁。
+</p>
+
+
+<br>
+<h2 id="dns-query-types">DNS 查詢的類型</h2>
+<p>DNS 查詢主要分為兩類：遞迴查詢和迭代查詢。遞迴查詢是指 DNS 伺服器將持續執行查詢直到獲得答案；而迭代查詢則是指 DNS 伺服器在每一步回應用戶查詢的最佳信息，但不保證一定獲得最終答案。</p>
+
+
+<br>
+<h2 id="conclusion">結論</h2>
+<p>域名解析是互聯網的基礎設施之一，它確保了用戶能夠方便地訪問網站和網上資源。通過 DNS Lookup，復雜的 IP 地址被轉換成人類可讀的網域名稱，使得網路導航變得簡單直觀。DNS 系統的高效運作對於保持互聯網的流暢和穩定至關重要。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    </section>
+</article>
+
+
+
+
+            </div>
+        </div>
+
+        
+            
+            <a id="pagenext" href="/2023/06/26/%E4%BA%86%E8%A7%A3%20TCP%E8%88%87UDP%EF%BC%9A%E5%85%A9%E7%A8%AE%E7%B6%B2%E8%B7%AF%E5%8D%94%E5%AE%9A%E7%9A%84%E5%B7%AE%E7%95%B0/" class="article-next" title="了解 TCP與UDP：兩種網路協定的差異"><i class="icon-arrow-right"></i></a>
+            
+            
+            <a id="pageprev" href="/2023/08/25/%E7%80%8F%E8%A6%BD%E5%99%A8%E6%B8%B2%E6%9F%93%E6%A9%9F%E5%88%B6/" class="article-prev" title="瀏覽器渲染機制"><i class="icon-arrow-left"></i></a>
+            
+        
+
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://unpkg.com/jquery@1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle('normal', slideDone);
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp('normal', slideDone);
+            }, 3000);
+        }
+
+        function slideDone() {
+            if (nodes.navInner.css('display') !== 'none') {
+                nodes.navInner.css('display', '');
+            }
+        }
+
+        $(window).on('resize', function() {
+            if ($(this).width() > 960) {
+                nodes.navInner.css('display', '');
+            }
+        });
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
